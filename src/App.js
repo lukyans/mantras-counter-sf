@@ -71,7 +71,7 @@ function App() {
     })
     fetch(process.env.REACT_APP_AWS_DYNAMODB_URI, {
       method: 'POST',
-      body: JSON.stringify(inputData),
+      body: JSON.stringify({...inputData, table_name: process.env.REACT_APP_AWS_DYNAMODB_TABLE_NAME}),
       headers: {
         'Content-Type': 'application/json'
       }
