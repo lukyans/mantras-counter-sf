@@ -15,10 +15,10 @@ const MantrasIntro = () => {
         className="intro_image"
       />
       <p className="intro_text">
-        Let's start collecting mantras in the intention of getting another new resident.
-        With an empty room and no guest income we will not be able to support the center.
-        Let's start making some strong wishes and commit to collecting <b>111,111 Karmapa Chenno</b> mantras.
-        It is a nice way to keep our bonds and strength as sangha in times we are living in now.
+        Let's collect mantras with the intention of finding another new resident
+        very soon that is a good fit for our Center.
+        Let's make strong wishes and commit to collecting <b>111,111 Karmapa Chenno</b> mantras.
+        It is a nice way to keep our bonds and strength as a sangha during these times we are now living.
       </p>
     </div>
   )
