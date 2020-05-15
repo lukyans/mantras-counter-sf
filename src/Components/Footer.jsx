@@ -8,9 +8,8 @@ export default function Footer() {
         DWBC SF
       </a>{' '}
       •{' '}
-
         Mantra Collection
-      
+      {' '}
       • 2020
     </div>
   )
