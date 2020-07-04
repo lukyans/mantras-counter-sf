@@ -15,10 +15,11 @@ const MantrasIntro = () => {
         className="intro_image"
       />
       <p className="intro_text">
-        Let's collect mantras with the intention of finding another new resident
-        very soon that is a good fit for our Center.
-        Let's make strong wishes and commit to collecting <b>111,111 Karmapa Chenno</b> mantras.
-        It is a nice way to keep our bonds and strength as a sangha during these times we are now living.
+        We are collecting <b>111,111 Karmapa Chenno</b> mantras
+        with wishes to find a beautiful space where we can all gather,
+        practice, meet new people, and continue with our joyful activity!
+        Wishing for the best possible outcome for
+        the best possible place for DWB in San Francisco 🌈
       </p>
     </div>
   )
