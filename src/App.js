@@ -19,12 +19,20 @@ function App() {
       try {
         const response = await fetch(process.env.REACT_APP_AWS_DYNAMODB_URI)
         const resJson = await response.json()
-        const mantrasAmount = resJson.reduce((a, b) => ({
-          mantras_count: a.mantras_count + b.mantras_count
-        }))
-        const sortedData = resJson.sort(function(a, b) {
-          return new Date(b.date_created) - new Date(a.date_created)
-        })
+        let mantrasAmount
+        let sortedData = []
+        if (resJson.length === 0) {
+          mantrasAmount = {
+            mantras_count: 0,
+          }
+        } else {
+          mantrasAmount = resJson.reduce((a, b) => ({
+            mantras_count: a.mantras_count + b.mantras_count,
+          }))
+          sortedData = resJson.sort(function (a, b) {
+            return new Date(b.date_created) - new Date(a.date_created)
+          })
+        }
         setData(sortedData)
         setAllMantras(mantrasAmount)
       } catch (err) {
@@ -49,7 +57,7 @@ function App() {
   const handleChange = event => {
     setinputData({
       ...inputData,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     })
   }
 
@@ -60,21 +68,28 @@ function App() {
       alert('Please add mantras.')
       return
     }
+    if (parseInt(inputData.mantras_count) < 0) {
+      alert('Please add correct number.')
+      return
+    }
     data.unshift({
       ...inputData,
-      date_created: new Date().toISOString()
+      date_created: new Date().toISOString(),
     })
     setData(data)
     setAllMantras({
       mantras_count:
-        allMantras.mantras_count + parseInt(inputData.mantras_count)
+        allMantras.mantras_count + parseInt(inputData.mantras_count),
     })
     fetch(process.env.REACT_APP_AWS_DYNAMODB_URI, {
       method: 'POST',
-      body: JSON.stringify({...inputData, table_name: process.env.REACT_APP_AWS_DYNAMODB_TABLE_NAME}),
+      body: JSON.stringify({
+        ...inputData,
+        table_name: process.env.REACT_APP_AWS_DYNAMODB_TABLE_NAME,
+      }),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     }).catch(err => console.log('Error:', err))
 
     setinputData({ name: '', mantras_count: '' })
@@ -84,7 +99,7 @@ function App() {
     <div className="App">
       <Header />
       <MantrasIntro />
-      {data && allMantras.mantras_count ? (
+      {data && allMantras.mantras_count >= 0 ? (
         <>
           <MantrasAmount allMantras={allMantras} />
           <MantrasForm
