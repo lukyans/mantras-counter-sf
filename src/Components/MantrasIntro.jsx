@@ -15,7 +15,7 @@ const MantrasIntro = () => {
         className="intro_image"
       />
       <p className="intro_text">
-        We are collecting <b>111,111 Karmapa Chenno</b> mantras
+        We are collecting <b>111,111</b> mantras
         with wishes to find a beautiful space where we can all gather,
         practice, meet new people, and continue with our joyful activity!
         Wishing for the best possible outcome for
